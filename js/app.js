@@ -8,7 +8,7 @@ let lista = document.getElementById('lista-amigos');
         alert('Informe o nome do amigo.');
     } else if(amigos.includes(amigo) ) {
         alert('Nome do amigo já consta na lista.');
-        amigo = '';
+        document.getElementById('nome-amigo').value = '';
     } else {
         if(lista.textContent == ''){
             lista.textContent = amigo;
@@ -16,7 +16,7 @@ let lista = document.getElementById('lista-amigos');
             lista.textContent = lista.textContent + ', ' + amigo;
         }
         amigos.push(amigo);
-        amigo = '';
+        document.getElementById('nome-amigo').value = '';
     }
 }
 function sortear() {
