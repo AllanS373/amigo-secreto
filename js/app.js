@@ -1,30 +1,40 @@
 let amigos = [];
 
 function adicionar(){
-let amigo = document.getElementById('nome-amigo');
+let amigo = document.getElementById('nome-amigo').value.toUpperCase();
 let lista = document.getElementById('lista-amigos');
-amigos.push(amigo.value);
 
-    if(lista.textContent == ''){
-        lista.textContent = amigo.value;
+    if (amigo == '') {
+        alert('Informe o nome do amigo.');
+    } else if(amigos.includes(amigo) ) {
+        alert('Nome do amigo já consta na lista.');
+        amigo = '';
     } else {
-        lista.textContent = lista.textContent + ', ' + amigo.value;
+        if(lista.textContent == ''){
+            lista.textContent = amigo;
+        } else {
+            lista.textContent = lista.textContent + ', ' + amigo;
+        }
+        amigos.push(amigo);
+        amigo = '';
     }
-    amigo.value = '';
 }
-
 function sortear() {
     embaralha(amigos);
     let sorteio = document.getElementById('lista-sorteio');
+    if (amigos.length < 4) {
+        alert('Adicionar no mínimo 4 amigos.')
+    } else {
+        for (let i = 0; i < amigos.length; i++){
 
-    for (let i = 0; i < amigos.length; i++){
-
-        if (i == amigos.length -1) {
-            sorteio.innerHTML =sorteio.innerHTML + amigos[i] + ' --> ' + amigos[0] + '<br>';
-        } else {
-            sorteio.innerHTML =sorteio.innerHTML + amigos[i] + ' --> ' + amigos[i + 1] + '<br>';
+            if (i == amigos.length -1) {
+                sorteio.innerHTML =sorteio.innerHTML + amigos[i] + ' --> ' + amigos[0] + '<br>';
+            } else {
+                sorteio.innerHTML =sorteio.innerHTML + amigos[i] + ' --> ' + amigos[i + 1] + '<br>';
+            }
         }
     }
+    
 }
 
 function embaralha(lista) {
